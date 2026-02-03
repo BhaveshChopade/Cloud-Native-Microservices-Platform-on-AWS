@@ -1,0 +1,1 @@
+output "lb_dns_name" { value = aws_lb.k3s_nlb.dns_name }
