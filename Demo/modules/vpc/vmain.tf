@@ -22,7 +22,7 @@ resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 1) # 10.0.1.0/24
   map_public_ip_on_launch = true
-  availability_zone       = "us-east-1a" # Hardcoded for Single AZ Simplicity
+  availability_zone       = "us-east-1a" 
   tags = { Name = "${var.project_name}-public" }
 }
 
@@ -30,7 +30,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = cidrsubnet(var.vpc_cidr, 8, 2) # 10.0.2.0/24
-  availability_zone = "us-east-1a" # Same AZ for low latency
+  availability_zone = "us-east-1a" 
   tags = { Name = "${var.project_name}-private" }
 }
 
@@ -80,4 +80,5 @@ resource "aws_route_table" "private" {
 resource "aws_route_table_association" "private" {
   subnet_id      = aws_subnet.private.id
   route_table_id = aws_route_table.private.id
+
 }
